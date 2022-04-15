@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Couter from "./components/Counter/Couter";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction,logoutAction } from "./redux/actions";
+import Auth from "./components/Auth";
+import Base from "./components/Base";
+
 
 function App() {
+  // const [phone, setPhone] = useState("");
+  // const dispatch = useDispatch();
+   const auth = useSelector((state) => state.auth);
+  // console.log(auth)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Couter></Couter>
+      {auth.isAuth ? 
+        <Base></Base>
+       : 
+        <Auth></Auth>
+      }
     </div>
   );
 }
